@@ -71,11 +71,13 @@ func staticRouter(router *gin.Engine) {
 		authorized := router.Group("/", gin.BasicAuth(accountList))
 		authorized.GET("", func(c *gin.Context) {
 			indexHTML, _ := f.ReadFile("web/dist/" + "index.html")
+			c.Header("Content-Type", "text/html; charset=utf-8")
 			c.Writer.Write(indexHTML)
 		})
 	} else {
 		router.GET("/", func(c *gin.Context) {
 			indexHTML, _ := f.ReadFile("web/dist/" + "index.html")
+			c.Header("Content-Type", "text/html; charset=utf-8")
 			c.Writer.Write(indexHTML)
 		})
 	}
